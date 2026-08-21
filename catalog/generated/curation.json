@@ -1,0 +1,92 @@
+[
+  {
+    "itemId": "github:frontend-joe/css-reels:buttons/part-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "button"
+  },
+  {
+    "itemId": "github:frontend-joe/es6-components:carousels/carousel-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "carousel"
+  },
+  {
+    "itemId": "github:frontend-joe/svelte-components:src/routes/sidebars/sidebar-1/+page.svelte",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "collapsible-sidebar"
+  },
+  {
+    "itemId": "github:frontend-joe/js-components:accordions/accordion-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "image-accordion"
+  },
+  {
+    "itemId": "github:frontend-joe/css-reels:loaders/part-3/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "loader"
+  },
+  {
+    "itemId": "github:frontend-joe/css-components:logins/login-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "login-form"
+  },
+  {
+    "itemId": "github:frontend-joe/js-components:modals/modal-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "modal"
+  },
+  {
+    "itemId": "github:frontend-joe/css-components:cards/card-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "profile-card"
+  },
+  {
+    "itemId": "github:frontend-joe/js-components:navbars/navbar-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "responsive-navbar"
+  },
+  {
+    "itemId": "github:frontend-joe/es6-components:dropdowns/dropdown-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "select-menu"
+  }
+]

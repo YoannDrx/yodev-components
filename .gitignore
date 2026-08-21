@@ -1,0 +1,14 @@
+node_modules/
+.next/
+dist/
+coverage/
+playwright-report/
+test-results/
+.vercel/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.tsbuildinfo
+catalog/generated/sync-report.md
+work/

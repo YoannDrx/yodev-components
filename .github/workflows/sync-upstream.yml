@@ -1,0 +1,59 @@
+name: Sync Frontend Joe
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-frontend-joe
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Enable pnpm
+        run: corepack enable
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Refresh public metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: pnpm catalog:sync && pnpm catalog:check && pnpm test && pnpm build
+      - name: Prepare sync branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B chore/sync-frontend-joe
+          git add -- catalog/generated/frontend-joe.json catalog/generated/curation.json ATTRIBUTIONS.generated.md
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_ENV"
+          else
+            git commit -m "chore: sync Frontend Joe catalog"
+            git push --force-with-lease origin chore/sync-frontend-joe
+            echo "changed=true" >> "$GITHUB_ENV"
+          fi
+      - name: Open or update pull request
+        if: env.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create upstream-sync --color 7056EF --description "Automated upstream catalog refresh" --force
+          if gh pr view chore/sync-frontend-joe >/dev/null 2>&1; then
+            gh pr edit chore/sync-frontend-joe --title "chore: sync Frontend Joe catalog" --add-label upstream-sync
+          else
+            gh pr create --base main --head chore/sync-frontend-joe --title "chore: sync Frontend Joe catalog" --body-file catalog/generated/sync-report.md --label upstream-sync
+          fi

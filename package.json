@@ -1,0 +1,40 @@
+{
+  "name": "yodev-components",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm ui:build && pnpm --filter @yodev/catalog dev",
+    "build": "pnpm --filter @yodev/components build && pnpm --filter @yodev/catalog build",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "catalog:sync": "tsx packages/catalog-core/scripts/sync.ts",
+    "catalog:check": "tsx packages/catalog-core/scripts/check.ts",
+    "catalog:add": "tsx packages/catalog-core/scripts/add.ts",
+    "catalog:favorite": "tsx packages/catalog-core/scripts/curate.ts favorite",
+    "catalog:review": "tsx packages/catalog-core/scripts/curate.ts review",
+    "ui:build": "pnpm --filter @yodev/components build"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.62.1",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "jsdom": "^27.4.0",
+    "prettier": "^3.8.2",
+    "tsx": "^4.21.0",
+    "typescript": "6.0.3",
+    "vitest": "^4.1.11"
+  }
+}
