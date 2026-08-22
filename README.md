@@ -37,6 +37,12 @@ The weekly synchronizer only reads the five allow-listed repositories. New or
 changed entries require a reviewed porting pull request and are never merged
 automatically.
 
+## Deployment
+
+The Vercel project uses the repository root as its Root Directory and Node.js
+22.x. Validate the generated Preview deployment before promoting the same
+artifact to production.
+
 ## Legal
 
 The MIT license covers original YoDev code only. Read
