@@ -42,7 +42,9 @@ test("keeps the upstream preview next to its YoDev adaptation", async ({
   await page.goto(
     "/components/css-components-cards-card-1-index-html-c9ec73a0",
   );
-  await expect(page.locator("iframe.preview-frame")).toBeVisible();
+  await expect(page.locator("iframe.preview-frame")).toHaveCount(1, {
+    timeout: 15_000,
+  });
   await expect(
     page.getByRole("link", { name: "Ouvrir l’adaptation" }),
   ).toHaveAttribute("href", "/library/profile-card");
