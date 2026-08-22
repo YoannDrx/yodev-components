@@ -1,24 +1,20 @@
-# Contributing and curation
+# Contributing
 
-## Refresh Frontend Joe
+The generated inventory is machine-owned. Never edit
+`content/components.json`, `components/library/ports.generated.tsx` or
+`components/library/loaders.generated.ts` by hand.
+
+For an upstream refresh:
 
 ```bash
 GH_TOKEN="$(gh auth token)" pnpm catalog:sync
+pnpm generate:ports
 pnpm catalog:check
 ```
 
-The generated manifest must never be edited by hand.
+A new source remains `pending` and a modified source becomes `outdated` until
+its React wrapper, fixture, preview and attribution have been reviewed. Removed
+sources remain available as `removed-upstream` to avoid breaking URLs.
 
-## Add and curate
-
-```bash
-pnpm catalog:add https://github.com/owner/repository/tree/main/path
-pnpm catalog:favorite 'github:owner/repository:path'
-pnpm catalog:review 'github:owner/repository:path'
-```
-
-Human decisions are stored as YAML in `catalog/curation`. Adaptations belong in
-`packages/ui` and must include an inspiration URL, tests and accessible usage.
-One reusable YoDev component may cover several upstream visual variants from
-the same family; full applications, resources and duplicate implementation
-details must not be mislabeled as reusable components.
+Before opening a pull request, run format check, lint, TypeScript, unit tests,
+the Next.js build and the critical Playwright flows.

@@ -1,16 +1,14 @@
-import { defineConfig } from "vitest/config";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "vitest/config";
+
+const root = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@yodev/catalog-core": path.resolve("packages/catalog-core/src/index.ts"),
-      "@yodev/components": path.resolve("packages/ui/src/index.ts"),
-    },
-  },
+  resolve: { alias: { "@": root } },
   test: {
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
-    include: ["packages/**/tests/**/*.test.{ts,tsx}"],
+    include: ["tests/**/*.test.{ts,tsx}"],
   },
 });

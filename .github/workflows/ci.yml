@@ -27,7 +27,7 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
       - name: Validate catalog
-        run: pnpm catalog:check
+        run: pnpm generate:ports && git diff --exit-code && pnpm catalog:check
       - name: Quality checks
         run: pnpm format:check && pnpm lint && pnpm typecheck && pnpm test
       - name: Build
