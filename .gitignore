@@ -12,3 +12,5 @@ test-results/
 *.tsbuildinfo
 catalog/generated/sync-report.md
 work/
+content/sync-report.md
+public/thumbnails/.capture-cache/
