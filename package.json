@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "pnpm ui:build && pnpm --filter @yodev/catalog dev",
-    "build": "pnpm --filter @yodev/components build && pnpm --filter @yodev/catalog build",
+    "build": "pnpm --filter @yodev/catalog build",
     "lint": "pnpm -r lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
