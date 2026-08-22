@@ -7,6 +7,7 @@ import {
   extractItems,
   manifestPath,
   repositoryId,
+  usableBlobs,
   workspaceRoot,
   type CatalogItem,
   type CatalogManifest,
@@ -129,13 +130,28 @@ async function main() {
       technologies: tech,
       previous: previousItems,
     });
-    return { record, items, truncated: treeResponse.truncated };
+    return {
+      record,
+      items,
+      truncated: treeResponse.truncated,
+      sourcePaths: new Set(usableBlobs(tree).map((entry) => entry.path)),
+    };
   });
 
   const activeItems = extracted.flatMap((entry) => entry.items);
   const activeIds = new Set(activeItems.map((item) => item.id));
+  const currentRepositories = new Map(
+    extracted.map((entry) => [entry.record.id, entry]),
+  );
   const unavailable: CatalogItem[] = (previous?.items ?? [])
-    .filter((item) => !activeIds.has(item.id))
+    .filter((item) => {
+      if (activeIds.has(item.id)) return false;
+      const repository = currentRepositories.get(item.repositoryId);
+      if (!repository) return true;
+      return Boolean(
+        item.sourcePath && !repository.sourcePaths.has(item.sourcePath),
+      );
+    })
     .map((item) => ({ ...item, reviewStatus: "unavailable" as const }));
   const generatedAt = new Date().toISOString();
   const next: CatalogManifest = catalogManifestSchema.parse({

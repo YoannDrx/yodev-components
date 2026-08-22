@@ -97,7 +97,7 @@ export function detectKind(
   if (name === "assets") return "assets";
   if (["useful-links", "save-these"].includes(name)) return "resource";
   if (
-    /components|reels|widgets|cards|buttons|navbars|sidebars|menus|dropdowns|accordions|loaders|controls|modals|charts|carousels/.test(
+    /components|reels|widgets?|cards?|buttons?|navbars?|sidebars?|menus?|dropdowns?|accordions?|loaders?|controls?|modals?|charts?|carousels?|badges?|banners?|footers?|logins?|signups?|switches?|popovers?/.test(
       name,
     )
   ) {
@@ -155,6 +155,19 @@ function createStaticPreview(
   };
 }
 
+function createSnapshotPreview(
+  owner: string,
+  repo: string,
+  sha: string,
+  reason: string,
+): PreviewDescriptor {
+  return {
+    type: "snapshot",
+    imagePath: `https://opengraph.githubassets.com/${sha}/${owner}/${repo}`,
+    reason,
+  };
+}
+
 export function extractItems(input: {
   owner: string;
   repo: GitHubRepository;
@@ -172,8 +185,30 @@ export function extractItems(input: {
         ? "unknown"
         : "unlicensed";
   const candidates = new Map<string, PreviewDescriptor>();
+  const kind = detectKind(repo, tree);
 
-  for (const entry of blobs) {
+  if (
+    ["application", "template", "resource", "assets", "empty"].includes(kind)
+  ) {
+    candidates.set(
+      "",
+      repo.homepage?.startsWith("http")
+        ? { type: "external", url: repo.homepage }
+        : kind === "application" || kind === "template"
+          ? createSnapshotPreview(
+              owner,
+              repo.name,
+              sha,
+              "Capture de provenance du projet ; son code n’est pas exécuté dans YoDev.",
+            )
+          : {
+              type: "none",
+              reason: `Ce dépôt est classé « ${kind} » et n’est pas extrait comme une collection de composants.`,
+            },
+    );
+  }
+
+  for (const entry of candidates.size ? [] : blobs) {
     const lower = entry.path.toLowerCase();
     if (lower.endsWith(".html") && !lower.includes("/public/")) {
       candidates.set(
@@ -181,28 +216,47 @@ export function extractItems(input: {
         createStaticPreview(owner, repo.name, sha, entry.path, blobs),
       );
     } else if (/Example\.(jsx|tsx)$/.test(entry.path)) {
-      candidates.set(entry.path, {
-        type: "none",
-        reason:
-          "Le composant React nécessite une adaptation ou une capture validée.",
-      });
+      candidates.set(
+        entry.path,
+        createSnapshotPreview(
+          owner,
+          repo.name,
+          sha,
+          "Exemple React représenté par une capture de provenance sûre.",
+        ),
+      );
     } else if (/src\/routes\/.+\/\+page\.svelte$/.test(entry.path)) {
-      candidates.set(entry.path, {
-        type: "none",
-        reason: "La route Svelte nécessite un build isolé.",
-      });
+      candidates.set(
+        entry.path,
+        createSnapshotPreview(
+          owner,
+          repo.name,
+          sha,
+          "Route Svelte représentée sans exécuter le bundle amont.",
+        ),
+      );
     } else if (
       /(^|\/)(app|pages)\/.+\/page\.(tsx|jsx|js|ts)$/.test(entry.path)
     ) {
-      candidates.set(entry.path, {
-        type: "none",
-        reason: "La page applicative nécessite un build isolé.",
-      });
+      candidates.set(
+        entry.path,
+        createSnapshotPreview(
+          owner,
+          repo.name,
+          sha,
+          "Page applicative représentée sans exécuter le bundle amont.",
+        ),
+      );
     } else if (lower.endsWith(".vue") && lower.includes("component")) {
-      candidates.set(entry.path, {
-        type: "none",
-        reason: "Le composant Vue nécessite un build isolé.",
-      });
+      candidates.set(
+        entry.path,
+        createSnapshotPreview(
+          owner,
+          repo.name,
+          sha,
+          "Composant Vue représenté sans exécuter le bundle amont.",
+        ),
+      );
     }
   }
 
@@ -211,10 +265,12 @@ export function extractItems(input: {
       "",
       repo.homepage?.startsWith("http")
         ? { type: "external", url: repo.homepage }
-        : {
-            type: "none",
-            reason: "Aucun aperçu autonome détecté pour ce dépôt.",
-          },
+        : createSnapshotPreview(
+            owner,
+            repo.name,
+            sha,
+            "Aucun aperçu autonome détecté ; capture de provenance du dépôt.",
+          ),
     );
   }
 

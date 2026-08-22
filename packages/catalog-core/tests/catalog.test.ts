@@ -79,4 +79,36 @@ describe("repository extraction", () => {
     );
     expect(item?.licenseStatus).toBe("unlicensed");
   });
+  it("keeps complete applications as one project reference", () => {
+    const application = { ...repository, name: "product-app" };
+    const appTree: GitTreeEntry[] = [
+      {
+        path: "src/App.tsx",
+        mode: "100644",
+        type: "blob",
+        sha: "app",
+      },
+      {
+        path: "src/app/settings/page.tsx",
+        mode: "100644",
+        type: "blob",
+        sha: "settings",
+      },
+    ];
+    const items = extractItems({
+      owner: "frontend-joe",
+      repo: application,
+      sha: "1234567890abcdef",
+      tree: appTree,
+      technologies: ["react"],
+    });
+    expect(detectKind(application, appTree)).toBe("application");
+    expect(items).toHaveLength(1);
+    expect(items[0]).toEqual(
+      expect.objectContaining({
+        sourcePath: "",
+        preview: expect.objectContaining({ type: "snapshot" }),
+      }),
+    );
+  });
 });

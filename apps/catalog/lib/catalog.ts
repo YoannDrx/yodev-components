@@ -7,6 +7,7 @@ import {
 } from "@yodev/catalog-core";
 import manifestData from "../../../catalog/generated/frontend-joe.json";
 import curationData from "../../../catalog/generated/curation.json";
+import { getAdaptationSlug } from "./library";
 
 const empty: CatalogManifest = {
   version: 1,
@@ -25,7 +26,12 @@ export function getManifest(): CatalogManifest {
 }
 
 export function getCatalogItems(): CatalogItem[] {
-  return applyCuration(getManifest().items, curationData);
+  return applyCuration(getManifest().items, curationData).map((item) => {
+    const librarySlug = item.librarySlug ?? getAdaptationSlug(item);
+    return librarySlug
+      ? { ...item, librarySlug, reviewStatus: "adapted" as const }
+      : item;
+  });
 }
 
 export function getItemBySlug(slug: string) {

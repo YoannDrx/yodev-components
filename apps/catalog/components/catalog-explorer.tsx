@@ -111,6 +111,7 @@ export function CatalogExplorer({ items }: { items: CatalogItem[] }) {
           <option value="">Tous aperçus</option>
           <option value="static-srcdoc">Interactif</option>
           <option value="external">Externe</option>
+          <option value="snapshot">Capture</option>
           <option value="owned">YoDev</option>
           <option value="none">Référence</option>
         </select>
