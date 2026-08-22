@@ -66,6 +66,23 @@ export default async function ComponentDetailPage({ params }: Props) {
               referrerPolicy="no-referrer"
               title={`Démo externe de ${item.name}`}
             />
+          ) : preview.type === "snapshot" ? (
+            <figure className="snapshot-preview">
+              {/* eslint-disable-next-line @next/next/no-img-element -- image GitHub épinglée par le manifeste */}
+              <img src={preview.imagePath} alt="" />
+              <figcaption>
+                <strong>Capture de provenance</strong>
+                <p>{preview.reason}</p>
+                <a
+                  className="cta secondary"
+                  href={item.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Voir l’exemple sur GitHub ↗
+                </a>
+              </figcaption>
+            </figure>
           ) : preview.type === "owned" ? (
             <div className="preview-fallback">
               <div>
@@ -93,6 +110,18 @@ export default async function ComponentDetailPage({ params }: Props) {
           )}
         </section>
         <aside className="meta-panel">
+          {item.librarySlug ? (
+            <div className="adaptation-callout">
+              <strong>Adaptation YoDev disponible</strong>
+              <p>
+                L’aperçu original reste visible et une version React originale,
+                typée et accessible couvre cette famille.
+              </p>
+              <Link className="cta" href={`/library/${item.librarySlug}`}>
+                Ouvrir l’adaptation
+              </Link>
+            </div>
+          ) : null}
           <dl className="meta-list">
             <div>
               <dt>Statut</dt>

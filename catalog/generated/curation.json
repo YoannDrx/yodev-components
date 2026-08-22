@@ -1,5 +1,23 @@
 [
   {
+    "itemId": "github:frontend-joe/css-badge:badge-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "badge"
+  },
+  {
+    "itemId": "github:frontend-joe/css-banners:banner-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "banner"
+  },
+  {
     "itemId": "github:frontend-joe/css-reels:buttons/part-1/index.html",
     "favorite": true,
     "reviewed": true,
@@ -18,6 +36,15 @@
     "librarySlug": "carousel"
   },
   {
+    "itemId": "github:frontend-joe/css-reels:checkboxes/part-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "checkbox"
+  },
+  {
     "itemId": "github:frontend-joe/svelte-components:src/routes/sidebars/sidebar-1/+page.svelte",
     "favorite": true,
     "reviewed": true,
@@ -25,6 +52,24 @@
       "kit-yodev"
     ],
     "librarySlug": "collapsible-sidebar"
+  },
+  {
+    "itemId": "github:frontend-joe/es6-components:tables/table-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "data-table"
+  },
+  {
+    "itemId": "github:frontend-joe/css-components:footers/footer-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "footer"
   },
   {
     "itemId": "github:frontend-joe/js-components:accordions/accordion-1/index.html",
@@ -54,6 +99,15 @@
     "librarySlug": "login-form"
   },
   {
+    "itemId": "github:frontend-joe/es6-charts:area-chart/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "mini-chart"
+  },
+  {
     "itemId": "github:frontend-joe/js-components:modals/modal-1/index.html",
     "favorite": true,
     "reviewed": true,
@@ -63,6 +117,33 @@
     "librarySlug": "modal"
   },
   {
+    "itemId": "github:frontend-joe/es6-parallax:parallax-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "motion-card"
+  },
+  {
+    "itemId": "github:frontend-joe/es6-controls:pacman-pagination/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "pagination"
+  },
+  {
+    "itemId": "github:frontend-joe/css-popovers:popover-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "popover"
+  },
+  {
     "itemId": "github:frontend-joe/css-components:cards/card-1/index.html",
     "favorite": true,
     "reviewed": true,
@@ -70,6 +151,15 @@
       "kit-yodev"
     ],
     "librarySlug": "profile-card"
+  },
+  {
+    "itemId": "github:frontend-joe/es6-components:gsap/scroll-progress/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "progress-bar"
   },
   {
     "itemId": "github:frontend-joe/js-components:navbars/navbar-1/index.html",
@@ -88,5 +178,59 @@
       "kit-yodev"
     ],
     "librarySlug": "select-menu"
+  },
+  {
+    "itemId": "github:frontend-joe/css-components:signups/signup-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "signup-form"
+  },
+  {
+    "itemId": "github:frontend-joe/css-components:widgets/widget-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "stat-card"
+  },
+  {
+    "itemId": "github:frontend-joe/css-reels:switches/part-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "switch"
+  },
+  {
+    "itemId": "github:frontend-joe/html-controls:textbox-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "text-field"
+  },
+  {
+    "itemId": "github:frontend-joe/es6-libraries:toastify/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "toast"
+  },
+  {
+    "itemId": "github:frontend-joe/css-reels:tooltips/part-1/index.html",
+    "favorite": true,
+    "reviewed": true,
+    "tags": [
+      "kit-yodev"
+    ],
+    "librarySlug": "tooltip"
   }
 ]

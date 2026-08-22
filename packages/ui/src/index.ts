@@ -5,3 +5,4 @@ export * from "./controls";
 export * from "./navigation";
 export * from "./media";
 export * from "./forms";
+export * from "./extended";

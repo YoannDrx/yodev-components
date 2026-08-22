@@ -71,6 +71,7 @@ export const catalogItemSchema = z.object({
   technologies: z.array(z.enum(technologies)).min(1),
   tags: z.array(z.string()),
   preview: previewDescriptorSchema,
+  librarySlug: z.string().min(1).optional(),
   licenseStatus: z.enum(["licensed", "unlicensed", "unknown"]),
   reviewStatus: z.enum([
     "new",

@@ -78,7 +78,7 @@ export default function HomePage() {
       <section className="section">
         <div className="section-heading">
           <h2>Le kit YoDev</h2>
-          <Link href="/library">Les 10 composants →</Link>
+          <Link href="/library">Les {libraryItems.length} composants →</Link>
         </div>
         <div className="card-grid">
           {libraryItems.slice(0, 6).map((item) => (

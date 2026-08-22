@@ -54,9 +54,7 @@ export function applyCuration(
         name: override.title ?? item.name,
         tags: [...new Set([...item.tags, ...(override.tags ?? [])])],
         reviewStatus,
-        preview: override.librarySlug
-          ? { type: "owned" as const, librarySlug: override.librarySlug }
-          : item.preview,
+        librarySlug: override.librarySlug ?? item.librarySlug,
       };
     });
 }

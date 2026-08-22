@@ -35,3 +35,33 @@ test("renders the original component library", async ({ page }) => {
     page.getByRole("button", { name: "Action principale" }),
   ).toBeVisible();
 });
+
+test("keeps the upstream preview next to its YoDev adaptation", async ({
+  page,
+}) => {
+  await page.goto(
+    "/components/css-components-cards-card-1-index-html-c9ec73a0",
+  );
+  await expect(page.locator("iframe.preview-frame")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Ouvrir l’adaptation" }),
+  ).toHaveAttribute("href", "/library/profile-card");
+});
+
+test("shows a safe visual fallback for framework examples", async ({
+  page,
+}) => {
+  await page.goto(
+    "/components/vuejs-cards-src-components-cards-3dcubecard-vue-2eb62700",
+  );
+  await expect(page.getByText("Capture de provenance")).toBeVisible();
+  await expect(page.locator(".snapshot-preview img")).toBeVisible();
+});
+
+test("renders an extended accessible control", async ({ page }) => {
+  await page.goto("/library/switch");
+  const control = page.getByRole("switch", { name: "Aperçus interactifs" });
+  await expect(control).toBeChecked();
+  await control.click();
+  await expect(control).not.toBeChecked();
+});
